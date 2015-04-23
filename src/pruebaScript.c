@@ -8,7 +8,6 @@ void switchStdout(const char *newStream);
 void revertStdout();
 static int fd;
 static fpos_t pos;
-
 int main(void) {
 	//int sout = fileno(stdout);
 	//freopen("/home/utnso/Escritorio/file1", "a", stdout);
