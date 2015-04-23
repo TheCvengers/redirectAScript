@@ -4,10 +4,12 @@
 #include <unistd.h>
 // \
 
-void switchStdout(const char *newStream);
-void revertStdout();
-static int fd;
-static fpos_t pos;
+//void switchStdout(const char *newStream);
+//void revertStdout();
+
+//static int fd;
+//static fpos_t pos;
+
 int main(void) {
 	//int sout = fileno(stdout);
 	//freopen("/home/utnso/Escritorio/file1", "a", stdout);
@@ -15,6 +17,7 @@ int main(void) {
 	fflush(stdout);
 	bak = dup(1);
 	new = open("/home/utnso/Escritorio/file1", O_WRONLY | O_APPEND | O_CREAT,S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	//los O_ setean como se abre el archivo, los S_ dan permisos de lectura y escritura al usuario
 	dup2(new, 1);
 	close(new);
 	printf("asdasdasdasd\n");
@@ -27,19 +30,19 @@ int main(void) {
 	return 0;
 }
 
-void switchStdout(const char *newStream)
-{
-  fflush(stdout);
-  fgetpos(stdout, &pos);
-  fd = dup(fileno(stdout));
-  freopen(newStream, "w", stdout);
-}
+//void switchStdout(const char *newStream)
+//{
+//  fflush(stdout);
+//  fgetpos(stdout, &pos);
+//  fd = dup(fileno(stdout));
+//  freopen(newStream, "w", stdout);
+//}
 
-void revertStdout()
-{
-  fflush(stdout);
-  dup2(fd, fileno(stdout));
-  close(fd);
-  clearerr(stdout);
-  fsetpos(stdout, &pos);
-}
+//void revertStdout()
+//{
+//  fflush(stdout);
+//  dup2(fd, fileno(stdout));
+//  close(fd);
+//  clearerr(stdout);
+//  fsetpos(stdout, &pos);
+//}
