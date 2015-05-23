@@ -21,7 +21,7 @@ int main(void) {
 
 //redirecciona STDOUT a out y STDIN a in y ejecuta el script,
 // cuando termina vuelve STDOUT y STDIN a la normalidad
-void ejecutarScript(char* path, char* in, char* out) {
+void ejecutarScript(char* path, char* in, char* out) {  //TODO que lea de mmap en lugar de un archivo
 	char* command = (char*) malloc(strlen(path) + 3);
 	strcpy(command, "sh ");
 	strcat(command, path);
